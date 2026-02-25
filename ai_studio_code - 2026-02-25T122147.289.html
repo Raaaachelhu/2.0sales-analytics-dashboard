@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoyo同学 | 中考英语百日逆袭专属学习规划</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(217,100%,76%,0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(217,100%,76%,0.15) 0px, transparent 50%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1e3a8a, var(--primary));
+            border-radius: 24px;
+            color: white;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none"/></svg>') repeat;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Section Layout */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Grid Cards */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Data Progress */
+        .data-row {
+            margin-bottom: 1.5rem;
+        }
+        
+        .data-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 10px;
+            width: 0; /* Animated via JS */
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #cbd5e1;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Mechanism Box */
+        .mechanism-box {
+            background: var(--primary-light);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .alert-text {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Yoyo同学·英语中考逆袭计划</h1>
+            <p>基于首测学情与体验数据生成的专属「百日冲刺」学习路径</p>
+            <div style="margin-top: 1.5rem;">
+                <span class="tag">🎯 目标：杭州中考突破90-100分</span>
+                <span class="tag">📍 现状：60-70分 (120满分)</span>
+                <span class="tag">⏳ 周期：12周冲刺</span>
+                <span class="tag">⚡ 频率：一周3次正课</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 学情深度诊断 -->
+    <h2 class="section-title">一、 核心学情诊断</h2>
+    <div class="grid-2">
+        <div class="card js-observe">
+            <h3 style="color: var(--primary); margin-bottom: 1rem;">📊 现状剖析</h3>
+            <p><strong>当前词汇量：</strong> 680词 <span class="alert-text">（基础严重薄弱）</span></p>
+            <p><strong>中考要求量：</strong> 1600-2000词</p>
+            <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-muted);">
+                分析：60-70分的成绩并非智力或理解力问题，纯粹是因为**底层词汇严重断层**（相当于缺了初一初二的词汇）。听力听不懂、阅读看不懂、作文写不出，根本原因都在于这缺失的1000个核心词汇。
+            </p>
+        </div>
+        <div class="card js-observe">
+            <h3 style="color: var(--accent); margin-bottom: 1rem;">✨ 潜能优势 (来自体验课)</h3>
+            <p><strong>学习效率：</strong> 48分钟学完25个词</p>
+            <p><strong>记忆特征：</strong> 首测达标率100%，待加强0个</p>
+            <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-muted);">
+                分析：Yoyo的**瞬时记忆力极好，专注力高**。5词一组混检的模式非常适合她。只要用对工具，补齐这1000词的缺口只需要不到2个月的时间，完全来得及！
+            </p>
+        </div>
+    </div>
+
+    <!-- 目标倒推进度条 -->
+    <div class="card js-observe" style="margin-bottom: 3rem;">
+        <h3 style="margin-bottom: 1.5rem;">🎯 词汇量缺口补充模拟</h3>
+        <div class="data-row">
+            <div class="data-label">
+                <span>目前词汇量: 680词</span>
+                <span>目标要求: 1600+词 (缺口约950词)</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%" data-target="42%"></div>
+            </div>
+        </div>
+        <div class="mechanism-box">
+            <strong>🚀 破局算账：</strong><br>
+            按一节课55分钟计算，Yoyo的极佳状态可完成 <strong>35个新词/节课</strong>。<br>
+            一周3次课 = <strong>105词/周</strong>。<br>
+            补齐950词缺口只需：950 ÷ 105 ≈ <strong>9周（约2个月）</strong>！中考前绝对来得及！
+        </div>
+    </div>
+
+    <!-- 核心教学法排期 -->
+    <h2 class="section-title">二、 "12周中考通关" 词库规划</h2>
+    <p style="margin-bottom: 1.5rem; color: var(--text-muted);">结合人教版教材与杭州中考考纲，采用“先高频后全面，先基础后易混”的阶梯策略。</p>
+    
+    <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="timeline-item js-observe">
+            <div class="timeline-date">第1-4周：基石重建期（补历史欠账）</div>
+            <div class="timeline-content">
+                <h4>📚 匹配词库：《人教版七八年级核心词库》+《初中高频必备词库》</h4>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    <strong>策略：</strong> 此时绝不能直接背初三词汇。前4周主攻中考出现频率极高、但Yoyo由于初一初二没学好而遗漏的词汇。先拿下最容易提分的基础词汇，让平时测验的阅读理解瞬间变得“顺眼”，建立自信心。<br>
+                    <strong>目标：</strong> 掌握 400 个核心基础词。
+                </p>
+            </div>
+        </div>
+        
+        <!-- Phase 2 -->
+        <div class="timeline-item js-observe">
+            <div class="timeline-date">第5-9周：中考满版覆盖期（攻克九年级大关）</div>
+            <div class="timeline-content">
+                <h4>📚 匹配词库：《人教版九年级全册词库》+《杭州中考真题核心词库》</h4>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    <strong>策略：</strong> 此时基础已初步牢固，开始同步学校九年级的复习进度。利用51Talk系统“5词一组”的强制短时记忆，快速吞咽九年级较长、较难的词汇。<br>
+                    <strong>目标：</strong> 掌握 500 个进阶考纲词。
+                </p>
+            </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="timeline-item js-observe">
+            <div class="timeline-date">第10-12周：查漏补缺与中考冲刺期</div>
+            <div class="timeline-content">
+                <h4>📚 匹配词库：《初中易混淆词库》+《中考高频熟词生义库》</h4>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    <strong>策略：</strong> 针对体验课教练指出的“解决易混淆问题”。冲刺期不再大量过新词，而是将相似词（如 adapt/adopt, except/expect）放在一起对比。配合历年杭州中考完形填空高频选项词进行特训。<br>
+                    <strong>目标：</strong> 彻底解决考场上“看着眼熟但选不对”的丢分问题。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课前中后闭环 -->
+    <h2 class="section-title">三、 一周学习执行闭环 (黄金抗遗忘排期)</h2>
+    <div class="card js-observe" style="margin-bottom: 2rem;">
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">根据艾宾浩斯遗忘曲线定制，充分利用 <strong>"正课+21天9遍抗遗忘系统"</strong>。由于任务可叠加，复习用时极短，不增加初三沉重课业负担。</p>
+        
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <tr style="border-bottom: 2px solid #e2e8f0;">
+                <th style="padding: 1rem 0;">日程</th>
+                <th style="padding: 1rem 0;">核心动作</th>
+                <th style="padding: 1rem 0;">预估用时</th>
+            </tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;">
+                <td style="padding: 1rem 0; font-weight: 500;">正课日 (如一、三、五)</td>
+                <td style="padding: 1rem 0;">
+                    1. <b>速记新词：</b>(5词一组，课中混检)<br>
+                    2. <b>随堂抗遗忘：</b>(系统自动弹出的当日复习)
+                </td>
+                <td style="padding: 1rem 0; color: var(--primary);">55 分钟</td>
+            </tr>
+            <tr>
+                <td style="padding: 1rem 0; font-weight: 500;">非正课日 (如二、四、六、日)</td>
+                <td style="padding: 1rem 0;">
+                    <b>抗遗忘叠加任务：</b><br>
+                    利用碎片时间(睡前/早起/通勤)，完成系统推演的第1,2,4,7,15,21天的复习任务。只测不教，会的直接跳过。
+                </td>
+                <td style="padding: 1rem 0; color: var(--accent);">10-15 分钟</td>
+            </tr>
+        </table>
+        
+        <div style="margin-top: 1rem; padding: 1rem; background: #fffbeb; border-left: 4px solid var(--secondary); border-radius: 4px; font-size: 0.9rem;">
+            <strong>💡 教练特别叮嘱家长：</strong> 初三孩子时间极度宝贵。非正课日的“抗遗忘测试”是提分的核心！这15分钟必须坚持。哪怕正课学得再好，没有这9遍抗遗忘循环，1个月后依然会遗忘70%。
+        </div>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="card js-observe" style="text-align: center; background: linear-gradient(to right, var(--primary-light), white);">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">💌 给Yoyo同学的一封信</h3>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-main); font-style: italic;">
+            "Yoyo，你在体验课上48分钟记住25个单词的表现，让老师看到了你身上巨大的潜力！<br>
+            不要因为现在的60分而气馁，初中英语的逻辑其实很简单：<strong class="highlight">谁认识的单词多，谁就能拿高分。</strong><br>
+            你现在手里有一把极快的刀（极佳的短时记忆力），加上我们为你准备的剑谱（科学词库与抗遗忘系统），接下来的100天，只需要你拿出一点点坚持。<br>
+            咱们不比谁熬夜晚，就比谁每天的15分钟复习更专注。杭州中考的考场上，那些原本像乱码一样的英语阅读，一定会清晰地浮现出它们真正的意思！加油！"
+        </p>
+    </div>
+
+</div>
+
+<script>
+    // 进度条动画
+    setTimeout(() => {
+        const progressBars = document.querySelectorAll('.progress-fill');
+        progressBars.forEach(bar => {
+            const target = bar.getAttribute('data-target');
+            bar.style.width = target;
+        });
+    }, 500);
+
+    // 滚动渐现动画 (Intersection Observer)
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.js-observe').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
